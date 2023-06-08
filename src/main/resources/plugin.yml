@@ -1,0 +1,9 @@
+name: BBedwars
+version: '${version}'
+main: tv.bytex.bbedwars.BBedwars
+api-version: 1.19
+commands:
+  help:
+    description: Zeigt die Hilfe an
+  start:
+    description: Startet ein Spiel
