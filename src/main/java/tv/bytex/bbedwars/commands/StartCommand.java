@@ -20,6 +20,9 @@ public class StartCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
+        Bukkit.getServer().getPluginManager().registerEvents(new WorldProtection(), plugin);
+
         sender.sendMessage("Start wird Ausgefuehrt!");
         createSpawnPoints(30, 100, 0);
         createSpawnPoints(-30, 100, 0);

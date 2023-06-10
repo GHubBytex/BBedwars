@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-compileOnly "org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT"
+    compileOnly "org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT"
 }
 
 def targetJavaVersion = 17
@@ -45,3 +45,19 @@ processResources {
         expand props
     }
 }
+
+jar {
+    outputs.file("$buildDir/libs/BBedwars-1.0-SNAPSHOT.jar") // Pfad zur generierten JAR-Datei
+}
+
+task copyJarToDirectory(type: Copy) {
+    dependsOn jar
+    from(jar.archivePath)
+    into('C:/MC SERVER/MC Spigot 1.19.4 Jakob/plugins')
+
+    doLast {
+        println 'JAR-Datei wurde erfolgreich kopiert.'
+    }
+}
+
+build.dependsOn copyJarToDirectory
