@@ -7,3 +7,5 @@ commands:
     description: Zeigt die Hilfe an
   start:
     description: Startet ein Spiel
+  stop:
+    description: Stoppe ein Spiel

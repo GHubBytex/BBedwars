@@ -1,10 +1,8 @@
 package tv.bytex.bbedwars;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -27,7 +25,6 @@ public class ResourcenSpawner {
         startItemSpawner(-2, 100, 0, Material.GOLD_BLOCK, Material.GOLD_INGOT, GOLD_SPAWN_RATE, plugin);
         startItemSpawner(0, 100, 2, Material.GOLD_BLOCK, Material.GOLD_INGOT, GOLD_SPAWN_RATE, plugin);
         startItemSpawner(0, 100, -2, Material.GOLD_BLOCK, Material.GOLD_INGOT, GOLD_SPAWN_RATE, plugin);
-        System.out.println("Spawner sollten gestartet sein");
     }
 
     /**
@@ -53,9 +50,21 @@ public class ResourcenSpawner {
                 Location spawnLocation = new Location(world, x, y, z);
                 Location blockLocation = new Location(world, x, y - 1, z);
                 // Überprüfe, ob die ausgewählte Position ein Goldblock ist
-                if (blockLocation.getBlock().getType() == blockMaterial)
+                if (blockLocation.getBlock().getType() == blockMaterial) {
                     // Spawn einen Goldbarren an der Position
-                    world.dropItemNaturally(spawnLocation, new ItemStack(itemMaterial));
+                    ItemStack item = new ItemStack(itemMaterial);
+                    ItemMeta itemMeta = item.getItemMeta();
+                    switch (itemMaterial) {
+                        case IRON_INGOT -> itemMeta.setDisplayName(ChatColor.GRAY + "Eisen");
+                        case GOLD_INGOT -> itemMeta.setDisplayName(ChatColor.GOLD + "Gold");
+                        case BRICK -> itemMeta.setDisplayName(ChatColor.AQUA + "Bronce");
+                    }
+
+                    item.setItemMeta(itemMeta);
+
+                    world.dropItemNaturally(spawnLocation, item);
+                }
+
             }
         }.runTaskTimer(plugin, 0, 20 * spawnPerMin); // Alle 60 Sekunden (20 Ticks pro Sekunde) ausführen
     }
