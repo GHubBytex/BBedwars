@@ -57,7 +57,7 @@ public class ResourcenSpawner {
                     switch (itemMaterial) {
                         case IRON_INGOT -> itemMeta.setDisplayName(ChatColor.GRAY + "Eisen");
                         case GOLD_INGOT -> itemMeta.setDisplayName(ChatColor.GOLD + "Gold");
-                        case BRICK -> itemMeta.setDisplayName(ChatColor.AQUA + "Bronce");
+                        case BRICK -> itemMeta.setDisplayName(ChatColor.AQUA + "Bronze");
                     }
 
                     item.setItemMeta(itemMeta);
